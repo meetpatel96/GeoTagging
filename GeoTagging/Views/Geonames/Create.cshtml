@@ -1,0 +1,113 @@
+﻿@model GeoTagging.Models.Geoname
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Geoname</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Geonameid" class="control-label"></label>
+                <input asp-for="Geonameid" class="form-control" />
+                <span asp-validation-for="Geonameid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asciiname" class="control-label"></label>
+                <input asp-for="Asciiname" class="form-control" />
+                <span asp-validation-for="Asciiname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alternatenames" class="control-label"></label>
+                <input asp-for="Alternatenames" class="form-control" />
+                <span asp-validation-for="Alternatenames" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fclass" class="control-label"></label>
+                <input asp-for="Fclass" class="form-control" />
+                <span asp-validation-for="Fclass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fcode" class="control-label"></label>
+                <input asp-for="Fcode" class="form-control" />
+                <span asp-validation-for="Fcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Admin1" class="control-label"></label>
+                <input asp-for="Admin1" class="form-control" />
+                <span asp-validation-for="Admin1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Admin2" class="control-label"></label>
+                <input asp-for="Admin2" class="form-control" />
+                <span asp-validation-for="Admin2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Admin3" class="control-label"></label>
+                <input asp-for="Admin3" class="form-control" />
+                <span asp-validation-for="Admin3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Admin4" class="control-label"></label>
+                <input asp-for="Admin4" class="form-control" />
+                <span asp-validation-for="Admin4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Population" class="control-label"></label>
+                <input asp-for="Population" class="form-control" />
+                <span asp-validation-for="Population" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Admin1Geonameid" class="control-label"></label>
+                <input asp-for="Admin1Geonameid" class="form-control" />
+                <span asp-validation-for="Admin1Geonameid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Admin2Geonameid" class="control-label"></label>
+                <input asp-for="Admin2Geonameid" class="form-control" />
+                <span asp-validation-for="Admin2Geonameid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryGeonameid" class="control-label"></label>
+                <input asp-for="CountryGeonameid" class="form-control" />
+                <span asp-validation-for="CountryGeonameid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

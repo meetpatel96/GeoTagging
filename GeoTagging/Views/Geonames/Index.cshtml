@@ -1,0 +1,125 @@
+﻿@model IEnumerable<GeoTagging.Models.Geoname>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asciiname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alternatenames)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fclass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admin1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admin2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admin3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admin4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Population)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admin1Geonameid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admin2Geonameid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryGeonameid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) { //Where(x => x.Admin1 == "TN" && x.Admin2 == "139") works!
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asciiname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alternatenames)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fclass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Population)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin1Geonameid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin2Geonameid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryGeonameid)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Geonameid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Geonameid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Geonameid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

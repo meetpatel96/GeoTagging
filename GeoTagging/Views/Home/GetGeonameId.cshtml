@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GeoTagging.Models.Geoname>
+
+@{
+    ViewData["Title"] = "GeoNameId";
+
+    @* Loadig in the data from the controller for displaying*@
+    var country = ViewData["Country"];
+    var state = ViewData["State"];
+    var county = ViewData["County"];
+    var location = ViewData["Location"];
+
+    @*Instantiating an empty query result*@
+    IQueryable<int> query = Enumerable.Empty<int>().AsQueryable();
+
+    @*Setting the Correct Query from the controller*@
+    query = (IQueryable<int>)ViewData["GeoId"];
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Country: @country</p>
+<p>State: @state</p>
+<p>County: @county</p>
+<p>Location: @location</p>
+
+@*Finally displaying the Query result, aka the Geoids in a ordered list*@
+<h5>The GeoIds are:</h5>
+<ol>
+    @foreach (var id in query)
+    {
+        <li>
+            @id
+        </li>
+    }
+</ol>
+

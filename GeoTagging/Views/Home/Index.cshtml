@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    /// List of empty string instantiate
+    List<string> nlls = new List<string>();
+
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To The GeoTagging Project!</h1>
+</div>
+
+@*Main Display Form which displays the Countries, States, Counties and Askes for a Loacation*@
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetGeonameId" asp-controller="Home" method="post" name="myForm">
+            <div class="form-group">
+                <label class="control-label">Selct a Country:</label>
+                <select id="countrySelect" class="form-control" name="countryName" required>
+                    @foreach (var item in nlls)
+                    {
+                        <option value=""></option>//works faster cause its empty initially
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select a State/Provience:</label>
+                <select id="stateSelect" class="form-control" name="stateName" disabled>
+                    <option value="">--Select a State/Provience--</option>
+                    @foreach (var item in nlls)
+                    {
+                        <option value=""></option>//works faster cause its empty initially
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select a County:</label>
+                <select id="countySelect" class="form-control" disabled name="countyName">
+                    <option value="">--Select a County--</option>
+                    @foreach (var item in nlls)
+                    {
+                        <option value=""></option>
+                        //works faster cause its empty initially
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Enter in a Location:</label>
+                <input class="form-control" type="text" id="locationInput" name="locationName" value="" autocomplete="on" required />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Get Geonameid" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            @*This is for loading Country dynamically*@
+
+            $("#countrySelect").change(function () {
+                $("countrySelect").empty();
+                $("stateSelect").prop('disabled', false);
+                $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCountryList")',
+                    dataType: 'json',
+                success: function (countrySelects) {
+                    $("#countrySelect").append('<option value="' + "" + '">' + "--Select a Country--" + '</option>');
+                    $.each(countrySelects, function (i, countrySelect) {
+                        $("#countrySelect").append('<option value="' + countrySelect.isoCode + '">' + countrySelect.name + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve Countries' + ex);
+                }
+            });
+            return false;
+            })
+
+            $("#countrySelect").trigger("change");
+
+            @*This is for loading State dynamically*@
+
+            $("#countrySelect").change(function () {
+              $("#stateSelect").empty();
+              $("#stateSelect").prop('disabled', false);
+              $.ajax({
+                  type: 'POST',
+                  url: '@Url.Action("GetStatesList")',
+                  dataType: 'json',
+                  data: { id: $("#countrySelect").val() },
+                  success: function (stateSelects) {
+                      $("#stateSelect").append('<option value="' + "" + '">' + "--Select a State/Provience--" + '</option>');
+                      $.each(stateSelects, function (i, stateSelect) {
+                          $("#stateSelect").append('<option value="' + stateSelect.admin1 + '">' + stateSelect.name + '</option>');
+                      });
+                  },
+                  error: function (ex) {
+                      alert('Failed to retrieve States' + ex);
+                  }
+              });
+              return false;
+          })
+
+          @*This is for loading County dynamically*@
+
+          $("#stateSelect").change(function () {
+              $("#countySelect").empty();
+              $("#countySelect").prop('disabled', false);
+              $.ajax({
+                  type: 'POST',
+                  url: '@Url.Action("GetCountyList")',
+                  dataType: 'json',
+                  data: { id: $("#stateSelect").val() },
+                  success: function (countySelects) {
+                      $("#countySelect").append('<option value="' + "" + '">' + "--Select a County--" + '</option>');
+                      $.each(countySelects, function (i, countySelect) {
+                          $("#countySelect").append('<option value="' + countySelect.admin2 + '">' + countySelect.admin2name + '</option>');
+
+                      });
+                  },
+                  error: function (ex) {
+                      alert('Failed to retrieve Counties.' + ex);
+                  }
+              });
+              return false;
+          })
+
+      });
+
+    </script>
+}
